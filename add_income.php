@@ -14,7 +14,7 @@
             <div class="col-md-6">
                 <div class="card mt-5">
                     <div class="card-body">
-                        <h2 class="card-title text-center"><i class="fas fa-plus-circle"></i> Add Income</h2>
+                        <h2 class="card-title text-center mb-5"><i class="fas fa-plus-circle"></i> Add Income</h2>
                         <form action="process.php" method="post">
                             <input type="hidden" name="type" value="income">
                             <div class="form-group">
