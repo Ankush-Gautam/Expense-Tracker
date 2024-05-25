@@ -37,28 +37,28 @@ $conn->close();
 ?>
 
 <h2>Dashboard</h2>
-<div class="row">
+<div class="row text-white">
     <div class="col-md-4">
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Total Income</h5>
-                <p class="card-text">$<?php echo number_format($total_income, 2); ?></p>
+            <div class="card-body bg-success rounded">
+                <h5 class="card-title ">Total Income</h5>
+                <p class="card-text display-4">$<?php echo number_format($total_income, 2); ?></p>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body bg-danger rounded">
                 <h5 class="card-title">Total Expense</h5>
-                <p class="card-text">$<?php echo number_format($total_expense, 2); ?></p>
+                <p class="card-text display-4">$<?php echo number_format($total_expense, 2); ?></p>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body bg-primary rounded">
                 <h5 class="card-title">Net Balance</h5>
-                <p class="card-text">$<?php echo number_format($total_income - $total_expense, 2); ?></p>
+                <p class="card-text display-4">$<?php echo number_format($total_income - $total_expense, 2); ?></p>
             </div>
         </div>
     </div>

@@ -14,6 +14,11 @@ if (!isset($_SESSION['user_id'])) {
     <title>Income/Expense Tracker</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <!-- google fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,8 +26,12 @@ if (!isset($_SESSION['user_id'])) {
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
                 <div class="sidebar-sticky pt-3">
-                    <h5>Menu</h5>
+                    <div class="d-flex align-center mb-5">
+                        <i class="fas fa-user-circle fa-3x"></i>
+                        <h5 class="mt-2">Welcome, <?php echo $_SESSION['username']; ?></h5>
+                    </div>
                     <ul class="nav flex-column">
+                        
                         <li class="nav-item">
                             <a class="nav-link active" href="#" onclick="loadContent('dashboard')">
                                 <i class="fas fa-tachometer-alt"></i> Dashboard
@@ -40,12 +49,12 @@ if (!isset($_SESSION['user_id'])) {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="loadContent('list_income')">
-                                <i class="fas fa-list-alt"></i> List Income
+                                <i class="fas fa-list-alt"></i> List Incomes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="loadContent('list_expense')">
-                                <i class="fas fa-list-alt"></i> List Expense
+                                <i class="fas fa-list-alt"></i> List Expenses
                             </a>
                         </li>
                         <li class="nav-item">
@@ -58,8 +67,9 @@ if (!isset($_SESSION['user_id'])) {
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard</h1>
+                <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-5 border-bottom">
+                    <img src="./img/logo.webp" alt="Logo" class="image-fluid" style="width:60px; height:auto">
+                    <h1 class="h2">Income/Expense Tracker</h1>
                 </div>
                 <div id="main-content">
                     <!-- Dynamic content will be loaded here -->
