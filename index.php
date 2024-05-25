@@ -1,149 +1,74 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Income/Expense Tracker</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Income/Expense Tracker</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="sidebar-sticky pt-3">
+                    <h5>Menu</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" onclick="loadContent('dashboard')">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="loadContent('add_income')">
+                                <i class="fas fa-plus-circle"></i> Add Income
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="loadContent('add_expense')">
+                                <i class="fas fa-minus-circle"></i> Add Expense
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="loadContent('list_income')">
+                                <i class="fas fa-list-alt"></i> List Income
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="loadContent('list_expense')">
+                                <i class="fas fa-list-alt"></i> List Expense
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-    <nav>
-        <ul>
-            <li><a href="#" class="tablink" onclick="openTab(event, 'Income')">Income</a></li>
-            <li><a href="#" class="tablink" onclick="openTab(event, 'Expense')">Expense</a></li>
-        </ul>
-    </nav>
-
-    <div id="Income" class="tabcontent">
-        <h2>Add Income</h2>
-        <form action="process.php" method="post">
-            <input type="hidden" name="type" value="income">
-            <label for="amount">Amount:</label>
-            <input type="number" step="0.01" name="amount" id="amount" required><br>
-
-            <label for="description">Description:</label>
-            <input type="text" name="description" id="description"><br>
-
-            <label for="transaction_date">Date:</label>
-            <input type="date" name="transaction_date" id="transaction_date" required><br>
-
-            <button type="submit">Add Income</button>
-        </form>
-
-        <h2>Income History</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                // Include income-specific PHP code here
-                $servername = "localhost";
-                $username = "root"; // Replace with your MySQL username
-                $password = ""; // Replace with your MySQL password
-                $dbname = "income_expense_tracker";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-
-                $sql = "SELECT * FROM transactions WHERE type='income' ORDER BY transaction_date DESC";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr>
-                                <td>{$row['id']}</td>
-                                <td>{$row['amount']}</td>
-                                <td>{$row['description']}</td>
-                                <td>{$row['transaction_date']}</td>
-                              </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='4'>No income records found</td></tr>";
-                }
-
-                $conn->close();
-                ?>
-            </tbody>
-        </table>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Dashboard</h1>
+                </div>
+                <div id="main-content">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </main>
+        </div>
     </div>
 
-    <div id="Expense" class="tabcontent">
-        <h2>Add Expense</h2>
-        <form action="process.php" method="post">
-            <input type="hidden" name="type" value="expense">
-            <label for="amount">Amount:</label>
-            <input type="number" step="0.01" name="amount" id="amount" required><br>
-
-            <label for="description">Description:</label>
-            <input type="text" name="description" id="description"><br>
-
-            <label for="transaction_date">Date:</label>
-            <input type="date" name="transaction_date" id="transaction_date" required><br>
-
-            <button type="submit">Add Expense</button>
-        </form>
-
-        <h2>Expense History</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                // Include expense-specific PHP code here
-                $servername = "localhost";
-                $username = "root"; // Replace with your MySQL username
-                $password = ""; // Replace with your MySQL password
-                $dbname = "income_expense_tracker";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-
-                $sql = "SELECT * FROM transactions WHERE type='expense' ORDER BY transaction_date DESC";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr>
-                                <td>{$row['id']}</td>
-                                <td>{$row['amount']}</td>
-                                <td>{$row['description']}</td>
-                                <td>{$row['transaction_date']}</td>
-                              </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='4'>No expense records found</td></tr>";
-                }
-
-                $conn->close();
-                ?>
-            </tbody>
-        </table>
-    </div>
-
-    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
