@@ -29,7 +29,7 @@ if ($conn->query($sql) === TRUE) {
 
 $conn->close();
 
-// Redirect back to the main page
-header("Location: index.html");
+// Redirect back to the main page with the correct tab
+header("Location: index.php#".$type);
 exit();
 ?>
