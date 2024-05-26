@@ -26,6 +26,7 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,6 +35,7 @@ $conn->close();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
         <div class="row">
@@ -46,21 +48,26 @@ $conn->close();
                             <th>Amount</th>
                             <th>Description</th>
                             <th>Date</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         if ($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()) {
+                            while ($row = $result->fetch_assoc()) {
                                 echo "<tr>
                                         <td>{$row['id']}</td>
                                         <td>{$row['amount']}</td>
                                         <td>{$row['description']}</td>
                                         <td>{$row['transaction_date']}</td>
+                                        <td>
+                                            <a href='edit_expense.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
+                                            <a href='delete_expense.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this record?\")'>Delete</a>
+                                        </td>
                                       </tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='4'>No expense records found</td></tr>";
+                            echo "<tr><td colspan='5'>No expense records found</td></tr>";
                         }
                         ?>
                     </tbody>
@@ -69,4 +76,5 @@ $conn->close();
         </div>
     </div>
 </body>
+
 </html>

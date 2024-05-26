@@ -8,6 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,21 +27,22 @@ if (!isset($_SESSION['user_id'])) {
     <!-- my css  -->
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
                 <div class="sidebar-sticky pt-3">
-                    
+
                     <!-- user greeting div -->
                     <div class="d-flex align-items-center mb-5">
                         <i class="fas fa-user-circle fa-3x"></i>
                         <h5 class="mt-2 ml-2">Welcome, <?php echo $_SESSION['username']; ?></h5>
                     </div>
 
-                     <!-- nav-list menu items  -->
+                    <!-- nav-list menu items  -->
                     <ul class="nav flex-column">
-                        
+
                         <li class="nav-item mb-2">
                             <a class="nav-link active" href="#" onclick="loadContent('dashboard')">
                                 <i class="fas fa-tachometer-alt"></i> Dashboard
@@ -75,7 +77,7 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
             </nav>
 
-            
+
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
                     <img src="./img/logo.webp" alt="Logo" class="image-fluid" style="width:60px; height:auto">
@@ -90,7 +92,7 @@ if (!isset($_SESSION['user_id'])) {
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="scripts.js"></script>
-    
+
     <script>
         // Load dashboard content by default when the page loads
         $(document).ready(function() {
@@ -98,4 +100,5 @@ if (!isset($_SESSION['user_id'])) {
         });
     </script>
 </body>
+
 </html>
