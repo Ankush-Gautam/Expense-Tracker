@@ -24,11 +24,10 @@ if (isset($_GET['id'])) {
     $sql = "DELETE FROM transactions WHERE id='$id' AND user_id='$user_id' AND type='expense'";
 
     if ($conn->query($sql) === TRUE) {
-        header("Location: list_expense.php");
+        header("Location: index.php");
     } else {
         echo "Error deleting record: " . $conn->error;
     }
 
     $conn->close();
 }
-?>

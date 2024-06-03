@@ -31,7 +31,7 @@
                                 <label for="transaction_date">Date:</label>
                                 <input type="date" name="transaction_date" id="transaction_date" class="form-control" required>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Add Income</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-5">Add Income</button>
                         </form>
                     </div>
                 </div>

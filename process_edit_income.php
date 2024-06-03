@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "UPDATE transactions SET amount='$amount', description='$description', transaction_date='$transaction_date' WHERE id='$id' AND user_id='$user_id' AND type='income'";
 
     if ($conn->query($sql) === TRUE) {
-        header("Location: list_income.php");
+        header("Location: index.php");
     } else {
         echo "Error updating record: " . $conn->error;
     }

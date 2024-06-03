@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -35,7 +35,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="sidebar-sticky pt-3">
 
                     <!-- user greeting div -->
-                    <div class="d-flex align-items-center mb-5">
+                    <div class="d-flex align-items-center mt-2 mb-5">
                         <i class="fas fa-user-circle fa-3x"></i>
                         <h5 class="mt-2 ml-2">Welcome, <?php echo $_SESSION['username']; ?></h5>
                     </div>

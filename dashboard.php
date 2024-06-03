@@ -36,7 +36,7 @@ if ($result_expense->num_rows > 0) {
 $conn->close();
 ?>
 
-<h2>Dashboard</h2>
+<h2 class="my-5">Dashboard</h2>
 <div class="row text-white">
     <div class="col-md-4">
         <div class="card">
